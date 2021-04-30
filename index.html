@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Simulacion Requerimiento</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			.efecto_gris{
+				background-color: rgb(245, 245, 245);
+			}
+		</style>
+
+		<!--link rel='stylesheet' href="css/style.css" -->	
+		<link rel="stylesheet" href="css/morris.css">
+
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+
+	</head>
+	<body class="efecto_gris">
+		<br>
+		<div class="row">
+			<div class="col-md-offset-2 col-lg-3 col-md-3">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h2>Establecimiento</h2>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label>Renta/Alquiler por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="renta"  name="renta" placeholder="Amount" value="">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Factura/Electricidad por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="electricidad"  name="electricidad" placeholder="Amount" value="">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Factura/Agua por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="agua"  name="agua" placeholder="Amount" value="">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Factura/Internet por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="internet"  name="internet" placeholder="Amount" value="">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Factura/Telefono por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="telefono"  name="telefono" placeholder="Amount" value="">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Gasto/Otros por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="otros_establecimiento"  name="otros_establecimiento" placeholder="Amount" value="">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+					</div>					
+					<div class="panel-footer" >
+						<b>Total: </b><span id="total_esta"></span>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="col-lg-3 col-md-3">
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<h2>Inversión</h2>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label>Materiales</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="materiales"  name="materiales" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Herramientas</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="herramientas"  name="herramientas" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Maquinas</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="maquinas"  name="maquinas" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Paneles Solares</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="solares"  name="solares" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Baterias</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="baterias"  name="baterias" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Carro</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="carro"  name="carro" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Otros</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="otros_inversion"  name="otros_inversion" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="panel-footer">
+						<b>Total: </b><span id="total_inve"></span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-lg-3 col-md-3">
+				
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h2>Costos Operacionales</h2>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label>Gasto/Materiales por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="materiales_mate"  name="materiales" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Gasto/Herramientas por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="maquinas_mate"  name="maquinas" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Gasto/Detergentes por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="detergentes"  name="detergentes" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Alq. Carro por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="alq_carro"  name="alq_carro" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Gasto/Gasolina por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="gasolina"  name="gasolina" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Gasto/Peaje por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="peaje"  name="peaje" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Mantenimiento/Otros por Mes</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="otros_materiales"  name="otros_materiales" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="panel-footer">
+						<b>Total: </b><span id="total_mate"></span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-offset-2 col-lg-3 col-md-3">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h2>Empleados</h2>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label>Cantidad de Empleados</label>
+							<input type="number" min="0" class="form-control" id="cant_empleados"  name="cant_empleados" placeholder="Cantidad de Empleados">
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Horas(por empleado) por Mes</label>
+							<input type="number" min="0" class="form-control" id="cant_horas"  name="cant_horas" placeholder="Cantidad de Horas">
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Sueldo por Hora</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="sueldo"  name="sueldo" placeholder="Amount">
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Cant. Horas Extra por Mes</label>
+							<input type="number"  min="0" class="form-control" id="cant_horas_extra"  name="cant_horas_extra" placeholder="Cantidad de Horas">
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Pago Horas Extra</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="horas_extra"  name="horas_extra" placeholder="Amount">
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="panel-footer">
+						<b>Total: </b><span id="total_empl"></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2>Licencias/Patentes PR</h2>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label>Licencia Municipal</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="municipal"  name="municipal" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Licencia Estatal</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="estatal"  name="estatal" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Licencia Salud</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="salud"  name="salud" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Licencia Bombero</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="bombero"  name="bombero" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Retenedor de Impuestos</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="retenedor_impuestos"  name="retenedor_impuestos" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>Licencia Web Site</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="licencia_website"  name="licencia_website" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>						
+						<div class="form-group">
+							<label>Otros</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="otros_licencias_pr"  name="otros_licencias_pr" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+					</div>
+					<hr>					
+					<div class="panel-footer">
+						<b>Total: </b><span id="total_pr"></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3">
+				<div class="panel panel-violent">
+					<div class="panel-heading">
+						<h2>Licencias/Patentes US</h2>
+					</div>					
+					<div class="panel-body">
+						<div class="form-group">
+							<label>HACCP</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="haccp"  name="haccp" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>SSOP</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="ssop"  name="ssop" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						<div class="form-group">
+							<label>USDA</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="usda"  name="usda" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+						<hr>
+						
+						<div class="form-group">
+							<label>Otros</label>
+							<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input type="text" class="form-control" id="otros_licencias_us"  name="otros_licencias_us" placeholder="Amount">
+								<div class="input-group-addon">.00</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="panel-footer">
+						<b>Total: </b><span id="total_usa"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">			
+			<div class=" col-md-offset-2 col-lg-9 col-md-9">
+				<div class="panel panel-orange">
+					<div class="panel-heading">
+						<center><h1>Mercancia Entrante (Carne)</h1></center>
+					</div>					
+					<div class="panel-body">
+							<div class="form-group">
+								<label  class="col-sm-2 control-label">Precio Compra (1Lb)</label>
+								<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+								<div class="input-group ">
+									<div class="input-group-addon">$</div>
+									<input type="text" class="form-control" id="precio_compra_meat"  name="precio_compra_meat" placeholder="Amount eg. 12.89">
+								</div>
+							</div>
+							<div class="form-group">
+								<label  class="control-label">Precio Venta (1Lb)</label>
+								<div id="precio_venta_meat"></div>
+								<label for="amount2">Price range:</label>
+								<input type="text" id="amount2" readonly style="border:0; color:#f6931f; font-weight:bold;">
+								
+							</div>
+							<div class="form-group">
+								<label>Intervalo Venta de carne(lb) por dia:</label>
+								<div id="slider-range"></div>
+								<label for="amount">Weight range:</label>
+								<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+							</div>
+							<hr>
+							<div class="form-group">
+								<div class="col-sm-offset-1 col-sm-10">
+									<label for="inversion_p">Inversion Principal: $</label>
+									<input type="text" id="inversion_p" readonly style="border:0; color:#00b33c; font-weight:bold;">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-1 col-sm-10">
+									<label for="inversion_mes">Inversion por Mes: $</label>
+									<input type="text" id="inversion_mes" readonly style="border:0; color:#00b33c; font-weight:bold;">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-1 col-sm-10">
+									<label for="inversion_empl_mes">Inversion Patentes PR: $</label>
+									<input type="text" id="inversion_empl_mes" readonly style="border:0; color:#00b33c; font-weight:bold;">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-1 col-sm-10">
+									<label for="ganancia_mes">Ganancia Mensual Neta: $</label>
+									<b><input type="text" id="ganancia_mes" readonly style="border:0; color:blue; font-weight:bold;"></b>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-1 col-sm-10">
+									<label for="ganancia_mes_bruta">Ganancia Mensual Bruta: $</label>
+									<b><input type="text" id="ganancia_mes_bruta" class="" readonly style="border:0; color:blue; font-weight:bold;"></b>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">			
+			<div class=" col-md-offset-2 col-lg-9 col-md-9">
+				<div class="panel panel-meat">
+					<div class="panel-heading">
+						<center><h1>Simulacion</h1></center>
+					</div>					
+					<div class="panel-body">						
+						<div class="">
+							<div class="area-grids-heading">
+							<div class="box-tools pull-right">
+				                Real time
+				                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+				                  <button type="button" class="btn btn-default btn-xs" data-toggle="on">On</button>
+				                  <button type="button" class="btn btn-default btn-xs" data-toggle="off">Off</button>
+				                </div>
+				              </div>
+								<h3>Graph</h3>
+							</div>
+							<div id="graph1"></div>							
+						</div>
+						<div class="form-group">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	    <script src="js/bootstrap.min.js"></script>
+		<script src="js/raphael-min.js"></script>
+		<script src="js/morris.js"></script>
+		<script src="js/bootstrap-slider.min.js"></script>
+		<script type="text/javascript">
+
+
+		/*global $*/
+		
+		$("#otros_establecimiento,#renta,#telefono,#internet,#agua,#electricidad").keyup(function(){total_esta();totales();}).keyup();
+		
+		$("#otros_inversion,#carro,#baterias,#solares,#maquinas,#herramientas,#materiales").keyup(function(){total_inve();}).keyup();		
+
+		$("#otros_materiales,#peaje,#gasolina,#alq_carro,#detergentes,#maquinas_mate,#materiales_mate").keyup(function(){total_mate();totales();}).keyup();		
+
+		$("#horas_extra,#cant_horas_extra,#sueldo,#cant_horas,#cant_empleados").on("click",function(){total_empl();totales();}).keyup();
+		$("#horas_extra,#cant_horas_extra,#sueldo,#cant_horas,#cant_empleados").keyup(function(){total_empl();totales();}).keyup();
+		
+		$("#otros_licencias_pr,#licencia_website,#retenedor_impuestos,#bombero,#salud,#estatal,#municipal").keyup(function(){total_pr();}).keyup();
+		
+		$("#otros_licencias_us,#haccp,#ssop,#usda").keyup(function(){total_usa();}).keyup();
+
+		
+		function total_esta(){
+			var renta 			= $( "#renta" ).val() == '' ? 0 : parseInt($( "#renta" ).val());		
+			var electricidad 	= $( "#electricidad" ).val() == '' ? 0 : parseInt($( "#electricidad" ).val()) ;
+			var agua 			= $( "#agua" ).val() == '' ? 0 : parseInt($( "#agua" ).val()) ;
+			var internet 		= $( "#internet" ).val() == '' ? 0 : parseInt($( "#internet" ).val()) ;
+			var telefono 		= $( "#telefono" ).val() == '' ? 0 : parseInt($( "#telefono" ).val()) ;
+			var otros_est 		= $( "#otros_establecimiento" ).val() == '' ? 0 : parseInt($( "#otros_establecimiento" ).val()) ;			
+			var total_esta = renta + electricidad + agua + internet + telefono + otros_est;
+			$("#total_esta").text(total_esta);
+		}
+
+		function total_inve(){
+			var ti1 = $("#materiales" ).val() == '' ? 0 : parseInt($( "#materiales" ).val());
+			var ti2 = $("#herramientas" ).val() == '' ? 0 : parseInt($( "#herramientas" ).val());
+			var ti3 = $("#maquinas" ).val() == '' ? 0 : parseInt($( "#maquinas" ).val());
+			var ti4 = $("#solares" ).val() == '' ? 0 : parseInt($( "#solares" ).val());
+			var ti5 = $("#baterias" ).val() == '' ? 0 : parseInt($( "#baterias" ).val());
+			var ti6 = $("#carro" ).val() == '' ? 0 : parseInt($( "#carro" ).val());
+			var ti7 = $("#otros_inversion" ).val() == '' ? 0 : parseInt($( "#otros_inversion" ).val());
+			var total_inve = ti1 + ti2 + ti3 + ti4 + ti5 + ti6 + ti7;
+			$("#total_inve").text(total_inve);
+			$("#inversion_p").val(total_inve.toFixed(2));
+		}
+
+		function total_mate(){
+			var tm1	= $("#materiales_mate").val() == '' ? 0 : parseInt($( "#materiales_mate" ).val());
+			var tm2	= $("#maquinas_mate").val() == '' ? 0 : parseInt($( "#maquinas_mate" ).val());
+			var tm3	= $("#detergentes").val() == '' ? 0 : parseInt($( "#detergentes" ).val());
+			var tm4	= $("#alq_carro").val() == '' ? 0 : parseInt($( "#alq_carro" ).val());
+			var tm5	= $("#gasolina").val() == '' ? 0 : parseInt($( "#gasolina" ).val());
+			var tm6	= $("#peaje").val() == '' ? 0 : parseInt($( "#peaje" ).val());
+			var tm7	= $("#otros_materiales").val() == '' ? 0 : parseInt($( "#otros_materiales" ).val());
+			var total_mate = tm1 + tm2 + tm3 + tm4 + tm5 + tm6 + tm7;
+			$("#total_mate").text(total_mate);
+		}
+
+		function total_empl(){
+			var te1 = $("#cant_empleados").val() == '' ? 0 : parseInt($( "#cant_empleados" ).val());
+			var te2 = $("#cant_horas").val() == '' ? 0 : parseInt($( "#cant_horas" ).val());
+			var te3 = $("#sueldo").val() == '' ? 0 : parseFloat($( "#sueldo" ).val());
+			var te4 = $("#cant_horas_extra").val() == '' ? 0 : parseInt($( "#cant_horas_extra" ).val());
+			var te5 = $("#horas_extra").val() == '' ? 0 : parseFloat($( "#horas_extra" ).val());
+
+			//alert(te2 * te3 );
+			var total_empl =  ( ( te1 ) * (te2 * te3)  ) + (te4 * te5);
+			$("#total_empl").text(total_empl.toFixed(2));
+		}
+
+		function total_pr(){
+			var tp1 = $("#municipal").val() == '' ? 0 : parseInt($( "#municipal" ).val());
+			var tp2 = $("#estatal").val() == '' ? 0 : parseInt($( "#estatal" ).val());
+			var tp3 = $("#salud").val() == '' ? 0 : parseInt($( "#salud" ).val());
+			var tp4 = $("#bombero").val() == '' ? 0 : parseInt($( "#bombero" ).val());
+			var tp5 = $("#retenedor_impuestos").val() == '' ? 0 : parseInt($( "#retenedor_impuestos" ).val());
+			var tp6 = $("#licencia_website").val() == '' ? 0 : parseInt($( "#licencia_website" ).val());
+			var tp7 = $("#otros_licencias_pr").val() == '' ? 0 : parseInt($( "#otros_licencias_pr" ).val());	
+			var total_pr = tp1 + tp2 + tp3 + tp4 + tp5 + tp6 + tp7	;
+			$("#total_pr").text(total_pr);
+			$("#inversion_empl_mes").val(total_pr.toFixed(2));
+
+		}
+		function total_usa(){
+			var tu1 = $("#haccp").val() == '' ? 0 : parseInt($( "#haccp" ).val());
+			var tu2 = $("#ssop").val() == '' ? 0 : parseInt($( "#ssop" ).val());
+			var tu3 = $("#usda").val() == '' ? 0 : parseInt($( "#usda" ).val());
+			var tu4 = $("#otros_licencias_us").val() == '' ? 0 : parseInt($( "#otros_licencias_us" ).val());
+			var total_usa = tu1 + tu2 + tu3 + tu4;
+			$("#total_usa").text(total_usa);
+		}
+			
+
+			function totales(){
+				var total_pm = parseFloat($("#total_esta").text()) + parseFloat($("#total_empl").text()) + parseFloat($("#total_mate").text());
+				$("#inversion_mes").val(total_pm.toFixed(2));
+				
+			}
+
+			var im = $("#slider-range").val();
+		
+			 $( function() {
+				$( "#precio_venta_meat" ).slider({	
+					animate: "slow",
+					step: 0.01,				
+					range: false,
+					min: 0,
+					max: 50,
+				  	values: [3.25],
+					slide: function( event, ui ) {
+						$( "#amount2" ).val("$"+ui.values);
+					}
+				});
+				$( "#amount2" ).val("$"+$("#precio_venta_meat" ).slider("values"));
+			} );
+
+			function range(n){
+					var range = $( "#amount" ).val();					
+					range = range.replace("Lb","");
+					range = range.split(" - ");
+					return parseInt(range[n]);
+			}
+			$( function() {
+				$( "#slider-range" ).slider({
+					range: true,
+					min: 0,
+					max: 100,
+					values: [ 4, 6 ],
+					slide: function( event, ui ) {
+						$( "#amount" ).val( ui.values[ 0 ] + "Lb - " + ui.values[ 1 ] + "Lb" );
+					}
+				});
+				$( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +
+			"Lb - " + $( "#slider-range" ).slider( "values", 1 )+ "Lb"   );
+			} );
+			
+	</script>
+	<script>
+
+			var nReloads = 0;
+			function data1(offset) {
+			  var ret = [];
+			  var acumulacion_ganancia = 0;
+			  for (var x = 0; x <= 31; x += 1) {
+				var ab = range(0);
+				var ba = range(1);
+				var pcv = $("#precio_compra_meat").val() == '' ? 0 : parseFloat($( "#precio_compra_meat" ).val());
+				var pvm = parseFloat($("#amount2" ).val().replace("$",""));
+				var im  = $("#slider-range").val();
+				var ganancia_lb = (pvm - pcv).toFixed(4);
+				var venta = (Math.random() * (ba - ab) + ab).toFixed(4);
+				var minimo = (pcv * venta ).toFixed(4);
+				var ganancia_bruta = ((venta * pvm)-(venta * pcv)).toFixed(4);
+				acumulacion_ganancia += parseFloat(ganancia_bruta);
+				ret.push({
+				  x: x,
+				  y: venta,
+				  z: pcv,
+				  w: pvm,
+				  m: minimo,
+				  s: ganancia_lb,
+				  g: ganancia_bruta,
+				  p: (venta * pvm ).toFixed(4),
+				  ac: acumulacion_ganancia.toFixed(4)
+				});
+			  }
+			  $("#ganancia_mes").val(acumulacion_ganancia.toFixed(2));
+			  $("#ganancia_mes_bruta").val((acumulacion_ganancia - $("#inversion_mes").val()).toFixed(2));
+			  return ret;
+			}
+			var graph = Morris.Line({
+				element: 'graph1',
+				data: data1(0),
+				xkey: 'x',
+				ykeys: ['y', 'z', 'w', 'm', 's', 'g', 'p','ac'],
+				labels: ['Lb Producción Meat', '$MeatBuy', '$MeatSell', '$Inversion en carne','$Ganancia por Lb ','$Ganancia Bruta','$Precio de Venta Neta','$Acumulacion de ganancia Neta'],
+				parseTime: false,
+				ymin: 0,
+				ymax: 5550,
+				hideHover: true
+			});
+
+
+			var realtime       = 'on';
+		    $('#realtime .btn').on("click",function () {
+		      	if ($(this).data('toggle') == 'on') {
+		        	realtime = 'on';
+		      	}
+		      	else {
+		        	realtime = 'off';
+		      	}
+		      	if (realtime == 'on') {
+				    setInterval(update, 100);
+				    totales();
+				}
+		    });
+
+
+			function update() {
+				if (realtime == 'on') {
+					  nReloads++;
+					  graph.setData(data1(1 * nReloads));
+					  $('#reloadStatus').text(nReloads + ' reloads');
+				}
+			}
+			$( function() {
+				if (realtime == 'on') {
+				    setInterval(update, 100);
+				    totales();
+				}
+			});
+			
+		</script>
+	
+	</body>
+</html>
+
